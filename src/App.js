@@ -6,14 +6,14 @@ import DonorListPage from './Components/Page/DonorListPage';
 import HomePage from './Components/Page/HomePage';
 import SignUpPage from './Components/Page/SignUpPage';
 import LoginPage from './Components/Page/LoginPage';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import store from "./Components/Redux/Store"
-import FetchAllUsers from "./Components/FetchData/FetchAllUsers"
+import ReactLoading from 'react-loading';
 
 function App() {
-  return (
-    <Provider store={store}>
-      <FetchAllUsers />
+  const DataFetch = useSelector(state => state.DataFetch)
+  if (DataFetch) {
+    return (
       <section className="main_content h-screen">
         <Switch>
           <Route path="/" exact>
@@ -30,8 +30,15 @@ function App() {
           </Route>
         </Switch>
       </section>
-    </Provider>
-  );
+    );
+  }
+  else {
+    return (
+      <section className="main_content h-screen bg-green-400 text-white flex justify-center items-center">
+        <ReactLoading type="bars" color="#000" />
+      </section>
+    )
+  }
 }
 
 export default App;

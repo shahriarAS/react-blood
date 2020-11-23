@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import RootReducer from "../Redux/RootReducer"
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../Config/FirebaseConfig';
+import { useQuery } from "react-query";
 
 function FetchAllUsers() {
     const dispatch = useDispatch(RootReducer)
 
     function GetAllUser() {
+        dispatch({
+            type: "loading"
+        })
         firebase.database().ref().child("users").on("value", snapshot => {
             if (snapshot.val() != null) {
                 dispatch({
@@ -17,8 +21,13 @@ function FetchAllUsers() {
             }
             else {
             }
+            dispatch({
+                type: "success"
+            })
         })
     }
+
+    const {status, data, error} = useQuery("ALLUSER", GetAllUser);
 
     useEffect(() => {
         GetAllUser()

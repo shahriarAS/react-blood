@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 function Donor_List() {
     const AllUsers = useSelector(state => state.AllUser)
+    const DataFetch = useSelector(state => state.DataFetch)
     const [open, setOpen] = useState(false);
     const [ModalData, setModalData] = useState()
 
@@ -64,7 +65,7 @@ function Donor_List() {
                                 </tr>
                             </thead>
                             <tbody className="bg-white">
-                                {AllUsers ? (
+                                {DataFetch ? (
                                     Object.keys(AllUsers).map(
                                         (user, index) => (
                                             <tr key={index}>
@@ -90,17 +91,17 @@ function Donor_List() {
                                                         (CheckStatus(new Date(), new Date(AllUsers[user].Last_Donated.split("-")[0], AllUsers[user].Last_Donated.split("-")[1])) == true) ? (
                                                             <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                 <span aria-hidden className="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                                <span className="relative text-xs">Ready To Donate</span>
+                                                                <span className="relative text-xs">Ready</span>
                                                             </span>
                                                         ) : (
                                                                 <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                     <span aria-hidden className="absolute inset-0 bg-red-400 opacity-50 rounded-full"></span>
-                                                                    <span className="relative text-xs">Unable To Donate</span>
+                                                                    <span className="relative text-xs">Unable</span>
                                                                 </span>
                                                             ) : (
                                                             <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                 <span aria-hidden className="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                                <span className="relative text-xs">Ready To Donate</span>
+                                                                <span className="relative text-xs">Ready</span>
                                                             </span>
                                                         )
                                                     }
@@ -113,7 +114,7 @@ function Donor_List() {
                                         )
                                     )
                                 )
-                                    : ""}
+                                    : "LOADING"}
                                 <Modal open={open} onClose={onCloseModal}>
                                     {
                                         ModalData ? (
