@@ -3,15 +3,19 @@ import { useForm } from 'react-hook-form';
 import { Link, Redirect } from 'react-router-dom';
 import firebase from '../Config/FirebaseConfig';
 import { useDispatch, useSelector } from 'react-redux'
-import firebase from '../Config/FirebaseConfig';
+import RootReducer from "../Redux/RootReducer"
 
 function Login() {
     const CurrentUser = useSelector(state => state.CurrentUser)
-    const AllUsers = useSelector(state => state.AllUser)    
-    var provider = new firebase.auth.GoogleAuthProvider();
-    const [Login_status, setLogin_status] = useState()
+    const AllUsers = useSelector(state => state.AllUser)
+    console.log("CurrentUser", CurrentUser)
 
     const dispatch = useDispatch(RootReducer)
+
+
+    // const [user, setuser] = useState()
+    var provider = new firebase.auth.GoogleAuthProvider();
+    const [Login_status, setLogin_status] = useState()
 
     const { register, errors, handleSubmit, watch, reset } = useForm(
         {
@@ -26,12 +30,6 @@ function Login() {
                 // ...
                 setLogin_status()
                 console.log(user)
-                const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(users => AllUsers[users].Email == user.email)[0]]
-                console.log("CurrentUserPayload", CurrentUserPayload)
-                dispatch({
-                    type: "GetCurrentUser",
-                    payload: CurrentUserPayload
-                })
             })
             .catch((error) => {
                 var errorCode = error.code;
@@ -56,9 +54,15 @@ function Login() {
         // event.preventDefault()
         firebase.auth().onAuthStateChanged(function (login_user) {
             if (login_user) {
-                console.log("Login STat", login_user)
-                setuser(login_user)
-                console.log("STATS USER", user)
+                // console.log("Login STat", login_user)
+                // setuser(login_user)
+                // console.log("STATS USER", user)
+                const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
+                console.log("CurrentUserPayload", CurrentUserPayload)
+                dispatch({
+                    type: "GetCurrentUser",
+                    payload: CurrentUserPayload
+                })
             }
         });
     }
@@ -85,7 +89,7 @@ function Login() {
         });
     }
 
-    if (user) {
+    if (CurrentUser) {
         return <Redirect to='/' />
     }
     else {

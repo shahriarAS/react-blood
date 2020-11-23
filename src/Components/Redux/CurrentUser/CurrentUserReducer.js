@@ -5,7 +5,7 @@ function CurrentUserReducer(state = initialState, action) {
         case "GetCurrentUser":
             return (action.payload);
         case "LoggedOutUser":
-            return state;
+            return false;
         default:
             return state;
     }

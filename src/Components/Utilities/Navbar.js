@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import logo from "../../assets/img/logo.png";
 import RootReducer from "../Redux/RootReducer"
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import firebase from '../Config/FirebaseConfig';
 
 function Navbar() {
@@ -12,6 +12,8 @@ function Navbar() {
 
     const dispatch = useDispatch(RootReducer)
 
+    // const [user, setuser] = useState()
+
     const [menu_nav, setmenu_nav] = useState()
     function openNav() {
         setmenu_nav({ width: "100%" })
@@ -20,25 +22,32 @@ function Navbar() {
         setmenu_nav({ width: "0" })
     }
 
-    // useEffect(() => {
-    //     CheckUser()
-    // }, [])
+    useEffect(() => {
+        CheckUser()
+    }, [])
 
-    // function CheckUser() {
-    //     // event.preventDefault()
-    //     firebase.auth().onAuthStateChanged(function (login_user) {
-    //         if (login_user) {
-    //             console.log("Login STat", login_user)
-    //             setuser(login_user)
-    //             console.log("STATS USER", user)
-    //         }
-    //     });
-    // }
+    function CheckUser() {
+        // event.preventDefault()
+        firebase.auth().onAuthStateChanged(function (login_user) {
+            if (login_user) {
+                // console.log("Login STat", login_user)
+                // // setuser(login_user)
+                // console.log("STATS USER", user)
+                const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
+                console.log("CurrentUserPayload", CurrentUserPayload)
+                dispatch({
+                    type: "GetCurrentUser",
+                    payload: CurrentUserPayload
+                })
+            }
+        });
+    }
 
     function LogOut(event) {
         event.preventDefault()
         firebase.auth().signOut().then(function () {
             console.log("LoggedOut")
+            // setuser()
             dispatch({
                 type: "LoggedOutUser"
             })
@@ -110,9 +119,9 @@ function Navbar() {
                     {
                         (CurrentUser) ?
                             (
-                                <div class="dropdown">
-                                    <a href="" className="dropbtn border-b-4 border-transparent"><i className="fa   fa-user-circle"></i> {CurrentUser.Full_Name}</a>
-                                    <div class="dropdown-content">
+                                <div className="dropdown">
+                                    <a href="" className="dropbtn border-b-4 border-transparent"><i className="fa   fa-user-circle"></i> {CurrentUser.Full_Name.split(" ")[CurrentUser.Full_Name.split(" ").length - 1]}</a>
+                                    <div className="dropdown-content">
                                         <a href="#" className="border-b-4 border-transparent 
                                         hover:border-red-600">Profile</a>
                                         <a href="#" className="border-b-4 border-transparent hover:border-red-600">Update  Profile</a>
