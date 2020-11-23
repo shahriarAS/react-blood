@@ -38,15 +38,12 @@ function SignUp() {
             data.Email, data.Password
         )
             .then(resp => {
-                console.log(resp)
-                console.log(data)
                 setReg_status({ code: "success", message: "Your account has been successfully created." })
                 CreateUserInDB(data)
                 reset()
             })
             .catch(function (error) {
                 setReg_status({ code: "error", message: error.message })
-                console.log(error.code)
             });
     }
     return (

@@ -8,13 +8,10 @@ import firebase from '../Config/FirebaseConfig';
 function Navbar() {
     const CurrentUser = useSelector(state => state.CurrentUser)
     const AllUsers = useSelector(state => state.AllUser)
-    console.log("CurrentUser", CurrentUser)
+    const [menu_nav, setmenu_nav] = useState()
 
     const dispatch = useDispatch(RootReducer)
 
-    // const [user, setuser] = useState()
-
-    const [menu_nav, setmenu_nav] = useState()
     function openNav() {
         setmenu_nav({ width: "100%" })
     }
@@ -27,12 +24,8 @@ function Navbar() {
     }, [])
 
     function CheckUser() {
-        // event.preventDefault()
         firebase.auth().onAuthStateChanged(function (login_user) {
             if (login_user) {
-                // console.log("Login STat", login_user)
-                // // setuser(login_user)
-                // console.log("STATS USER", user)
                 const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
                 console.log("CurrentUserPayload", CurrentUserPayload)
                 dispatch({
@@ -47,7 +40,6 @@ function Navbar() {
         event.preventDefault()
         firebase.auth().signOut().then(function () {
             console.log("LoggedOut")
-            // setuser()
             dispatch({
                 type: "LoggedOutUser"
             })

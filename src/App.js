@@ -9,13 +9,11 @@ import LoginPage from './Components/Page/LoginPage';
 import { Provider } from 'react-redux';
 import store from "./Components/Redux/Store"
 import FetchAllUsers from "./Components/FetchData/FetchAllUsers"
-import FetchCurrentUser from "./Components/FetchData/FetchCurrentUser"
 
 function App() {
   return (
     <Provider store={store}>
       <FetchAllUsers />
-      <FetchCurrentUser />
       <section className="main_content h-screen">
         <Switch>
           <Route path="/" exact>

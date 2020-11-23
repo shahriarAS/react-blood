@@ -1,6 +1,5 @@
 import React from 'react'
 import firebase from '../Config/FirebaseConfig';
-import Header from '../Utilities/Header';
 
 function LogOutPage() {
     function LogOut() {

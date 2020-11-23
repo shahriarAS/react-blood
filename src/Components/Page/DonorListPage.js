@@ -17,8 +17,6 @@ function Donor_List() {
     }
     const onCloseModal = () => setOpen(false);
 
-    // const [AllUsers, setAllUsers] = useState()
-
     function CheckStatus(dateFrom, dateTo) {
         const month = (dateTo.getMonth() - 1) - dateFrom.getMonth() +
             (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
@@ -29,19 +27,6 @@ function Donor_List() {
             return false
         }
     }
-
-    // useEffect(() => {
-    //     console.log("In Effect")
-    //     firebase.database().ref().child("users").on("value", snapshot => {
-    //         if (snapshot.val() != null) {
-    //             setAllUsers(snapshot.val())
-    //             console.log("All Users ", snapshot.val())
-    //         }
-    //         else {
-    //             console.log("Null")
-    //         }
-    //     })
-    // }, [])
 
     return (
         <div>

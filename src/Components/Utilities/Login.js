@@ -8,40 +8,29 @@ import RootReducer from "../Redux/RootReducer"
 function Login() {
     const CurrentUser = useSelector(state => state.CurrentUser)
     const AllUsers = useSelector(state => state.AllUser)
-    console.log("CurrentUser", CurrentUser)
-
-    const dispatch = useDispatch(RootReducer)
-
-
-    // const [user, setuser] = useState()
-    var provider = new firebase.auth.GoogleAuthProvider();
     const [Login_status, setLogin_status] = useState()
-
     const { register, errors, handleSubmit, watch, reset } = useForm(
         {
             mode: "onChange",
         }
     );
+    const dispatch = useDispatch(RootReducer)
+
+    var provider = new firebase.auth.GoogleAuthProvider();
 
     function LoginFunc(data) {
         firebase.auth().signInWithEmailAndPassword(data.Email, data.Password)
             .then((user) => {
-                // Signed in 
-                // ...
                 setLogin_status()
-                console.log(user)
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(error)
                 if (errorCode == "auth/user-not-found") {
                     setLogin_status({ code: "error", message: "User Not Found. Try to register or type email carefully" })
-                    console.log(Login_status)
                 }
                 else {
                     setLogin_status({ code: "error", message: "Wrong Password.." })
-                    console.log(Login_status)
                 }
             });
     }
@@ -51,14 +40,9 @@ function Login() {
     }, [])
 
     function CheckUser() {
-        // event.preventDefault()
         firebase.auth().onAuthStateChanged(function (login_user) {
             if (login_user) {
-                // console.log("Login STat", login_user)
-                // setuser(login_user)
-                // console.log("STATS USER", user)
                 const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
-                console.log("CurrentUserPayload", CurrentUserPayload)
                 dispatch({
                     type: "GetCurrentUser",
                     payload: CurrentUserPayload
@@ -74,7 +58,6 @@ function Login() {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            // console.log(user)
             // ...
         }).catch(function (error) {
             // Handle Errors here.

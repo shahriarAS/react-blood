@@ -21,20 +21,6 @@ function FetchCurrentUser() {
         });
     }
 
-    // function CheckUser() {
-    //     // event.preventDefault()
-    //     firebase.auth().onAuthStateChanged(function (login_user) {
-    //         if (login_user) {
-    //             const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
-    //             console.log("CurrentUserPayload", CurrentUserPayload)
-    //             dispatch({
-    //                 type: "GetCurrentUser",
-    //                 payload: CurrentUserPayload
-    //             })
-    //             console.log("Populate CurrentUsers Done")
-    //         }
-    //     });
-    // }
 
     useEffect(() => {
         CheckUser()
