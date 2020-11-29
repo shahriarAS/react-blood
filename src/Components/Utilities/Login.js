@@ -52,25 +52,25 @@ function Login() {
     // }
 
 
-    function GoogleSignIn() {
-        firebase.auth().signInWithPopup(provider).then(function (result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
-        }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
+    // function GoogleSignIn() {
+    //     firebase.auth().signInWithPopup(provider).then(function (result) {
+    //         // This gives you a Google Access Token. You can use it to access the Google API.
+    //         var token = result.credential.accessToken;
+    //         // The signed-in user info.
+    //         var user = result.user;
+    //         // ...
+    //     }).catch(function (error) {
+    //         // Handle Errors here.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         // The email of the user's account used.
+    //         var email = error.email;
+    //         // The firebase.auth.AuthCredential type that was used.
+    //         var credential = error.credential;
 
-            // ...
-        });
-    }
+    //         // ...
+    //     });
+    // }
 
     if (CurrentUser) {
         return <Redirect to='/' />
@@ -103,10 +103,10 @@ function Login() {
                         </div>) : ""
                     }
                     <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
-                    <button onClick={GoogleSignIn} className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
+                    {/* <button onClick={GoogleSignIn} className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
                         <span className="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i className="fa fa-google"></i></span>
                         <span>Login with Google</span>
-                    </button>
+                    </button> */}
                     <div className="relative mt-10 h-px bg-gray-300">
                         <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
                             <span className="bg-white px-4 text-xs text-gray-500 uppercase">Or Login With Email</span>
