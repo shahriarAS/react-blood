@@ -5,6 +5,7 @@ import "./assets/style.css"
 import DonorListPage from './Components/Page/DonorListPage';
 import HomePage from './Components/Page/HomePage';
 import SignUpPage from './Components/Page/SignUpPage';
+import UpdateProfilePage from './Components/Page/UpdateProfilePage';
 import LoginPage from './Components/Page/LoginPage';
 import { Provider, useSelector } from 'react-redux';
 import store from "./Components/Redux/Store"
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/sign_up">
             <SignUpPage />
+          </Route>
+          <Route path="/update_profile">
+            <UpdateProfilePage />
           </Route>
           <Route path="/login">
             <LoginPage />

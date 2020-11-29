@@ -4,8 +4,15 @@ import logo from "../../assets/img/logo.png";
 import RootReducer from "../Redux/RootReducer"
 import { useDispatch, useSelector } from 'react-redux';
 import firebase from '../Config/FirebaseConfig';
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
+import UserDetaill from '../Utilities/UserDetaill';
+import UserDetaillUpdate from '../Utilities/UserDetaillUpdate';
 
 function Navbar() {
+    const [open, setOpen] = useState(false);
+    const [openUpdate, setopenUpdate] = useState(false)
+    const [ModalData, setModalData] = useState()
     const CurrentUser = useSelector(state => state.CurrentUser)
     const AllUsers = useSelector(state => state.AllUser)
     const [menu_nav, setmenu_nav] = useState()
@@ -19,6 +26,22 @@ function Navbar() {
         setmenu_nav({ width: "0" })
     }
 
+    function onOpenModal(onOpenData) {
+        setModalData(onOpenData)
+        setOpen(true)
+    }
+
+    function onOpenUpdate(onUpdateData) {
+        setModalData(onUpdateData)
+        setopenUpdate(true)
+    }
+
+    function onCloseUpdate(onUpdateData) {
+        setopenUpdate(false)
+    }
+
+    const onCloseModal = () => setOpen(false);
+
     useEffect(() => {
         CheckUser()
     }, [])
@@ -27,10 +50,11 @@ function Navbar() {
         firebase.auth().onAuthStateChanged(function (login_user) {
             if (login_user) {
                 const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
-                console.log("CurrentUserPayload", CurrentUserPayload)
+                const user_dict_key = Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)
+                // console.log("CurrentUserPayload", CurrentUserPayload)
                 dispatch({
                     type: "GetCurrentUser",
-                    payload: CurrentUserPayload
+                    payload: user_dict_key,
                 })
             }
         });
@@ -103,23 +127,60 @@ function Navbar() {
                     className="logo_header__nav hidden lg:flex justify-between h-full items-center gap-6 text-xl font-medium text-gray-700">
                     <Link to="" className="border-b-4 border-transparent hover:border-red-600">Home</Link>
                     <Link to="/donor_list" className="border-b-4 border-transparent hover:border-red-600">Donor List</Link>
-                    <a href="" className="border-b-4 border-transparent hover:border-red-600">Blog</a>
-                    <a href="" className="border-b-4 border-transparent hover:border-red-600">Gallery</a>
-                    <a href="" className="border-b-4 border-transparent hover:border-red-600">Blog</a>
-                    <a href="" className="border-b-4 border-transparent hover:border-red-600">About Us</a>
-                    <a href="" className="border-b-4 border-transparent hover:border-red-600">Contact</a>
+                    <a href="/#About_Us" className="border-b-4 border-transparent hover:border-red-600">About Us</a>
+                    <a href="#Team" className="border-b-4 border-transparent hover:border-red-600">Team</a>
+                    <a href="#Contact" className="border-b-4 border-transparent hover:border-red-600">Contact</a>
+                    {/* <Link to="/sign_up" className="border-b-4 border-transparent hover:border-red-600">Sign Up</Link> */}
                     {
-                        (CurrentUser) ?
+                        (AllUsers[CurrentUser]) ?
                             (
-                                <div className="dropdown">
-                                    <a href="" className="dropbtn border-b-4 border-transparent"><i className="fa   fa-user-circle"></i> {CurrentUser.Full_Name.split(" ")[CurrentUser.Full_Name.split(" ").length - 1]}</a>
-                                    <div className="dropdown-content">
-                                        <a href="#" className="border-b-4 border-transparent 
-                                        hover:border-red-600">Profile</a>
-                                        <a href="#" className="border-b-4 border-transparent hover:border-red-600">Update  Profile</a>
-                                        <a onClick={(event) => LogOut(event)} href="#" className="border-b-4 border-transparent hover:border-red-600">Logout</a>
+                                <>
+                                    <div className="dropdown">
+                                        <p className="dropbtn border-b-4 border-transparent"><i className="fa   fa-user-circle"></i> {AllUsers[CurrentUser].Full_Name.split(" ")[AllUsers[CurrentUser].Full_Name.split(" ").length - 1]}</p>
+                                        <div className="dropdown-content">
+                                            <a onClick={() => onOpenModal(CurrentUser)} href="#" className="border-b-4 border-transparent hover:border-red-600">Profile</a>
+                                            <Link to="/update_profile" className="border-b-4 border-transparent hover:border-red-600">Update  Profile</Link>
+                                            <a onClick={(event) => LogOut(event)} href="#" className="border-b-4 border-transparent hover:border-red-600">Logout</a>
+                                        </div>
                                     </div>
-                                </div>
+                                    <Modal open={open} onClose={onCloseModal}>
+                                        {
+                                            ModalData ? (
+                                                <UserDetaill
+                                                    Full_Name={AllUsers[ModalData].Full_Name}
+                                                    Email={AllUsers[ModalData].Email}
+                                                    Phone={AllUsers[ModalData].Phone}
+                                                    Blood_Group={AllUsers[ModalData].Blood_Group}
+                                                    Gender={AllUsers[ModalData].Gender}
+                                                    Division={AllUsers[ModalData].Division}
+                                                    District={AllUsers[ModalData].District}
+                                                    Upazila={AllUsers[ModalData].Upazila}
+                                                    Location={AllUsers[ModalData].Location}
+                                                    Last_Donated={AllUsers[ModalData].Last_Donated}
+                                                />
+                                            ) : ""
+                                        }
+                                    </Modal>
+                                    <Modal open={openUpdate} onClose={onCloseUpdate}>
+                                        {
+                                            ModalData ? (
+                                                <UserDetaillUpdate
+                                                    DictKey={ModalData[0]}
+                                                    Full_Name={AllUsers[ModalData].Full_Name}
+                                                    Email={AllUsers[ModalData].Email}
+                                                    Phone={AllUsers[ModalData].Phone}
+                                                    Blood_Group={AllUsers[ModalData].Blood_Group}
+                                                    Gender={AllUsers[ModalData].Gender}
+                                                    Division={AllUsers[ModalData].Division}
+                                                    District={AllUsers[ModalData].District}
+                                                    Upazila={AllUsers[ModalData].Upazila}
+                                                    Location={AllUsers[ModalData].Location}
+                                                    Last_Donated={AllUsers[ModalData].Last_Donated}
+                                                />
+                                            ) : ""
+                                        }
+                                    </Modal>
+                                </>
 
                             ) : (
                                 <Link to="/login" className="border-b-4 border-transparent hover:border-red-600">Login</Link>

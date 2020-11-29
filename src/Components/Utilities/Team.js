@@ -6,7 +6,7 @@ import avatar4 from "../../assets/img/avatar-4.jpg"
 
 function Team() {
     return (
-        <section className="team">
+        <section className="team" id="Team">
             <section className="text-gray-700 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-wrap w-full mb-20">

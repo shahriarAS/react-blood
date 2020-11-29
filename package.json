@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.2.2",
     "autoprefixer": "^10.0.2",
     "firebase": "^8.1.1",
+    "infinite-react-carousel": "^1.2.11",
     "postcss": "^8.1.8",
     "postcss-import": "^13.0.0",
     "react": "^17.0.1",

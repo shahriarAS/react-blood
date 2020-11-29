@@ -4,6 +4,7 @@ import About_US from '../Utilities/AboutUS'
 import Slider from '../Utilities/Slider'
 import Team from '../Utilities/Team'
 import Testimonials from '../Utilities/Testimonials'
+import Contact from '../Utilities/Contact'
 
 function HomePage() {
     return (
@@ -11,8 +12,9 @@ function HomePage() {
             <Header />
             <Slider />
             <About_US />
-            <Team />
             <Testimonials />
+            <Team />
+            <Contact />
         </div>
     )
 }

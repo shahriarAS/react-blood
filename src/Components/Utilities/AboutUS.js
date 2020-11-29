@@ -3,7 +3,7 @@ import Slide3 from "../../assets/img/slide-3.jpg"
 
 function About_US() {
     return (
-        <section className="text-gray-700 body-font">
+        <section className="text-gray-700 body-font" id="About_Us">
             <div className="container mx-auto flex px-5 py-12 lg:flex-row flex-col items-center gap-3">
                 <div
                     className="about_us__text_div lg:flex-grow lg:w-1/2 lg:pr-24 lg:pr-16 flex flex-col lg:items-start lg:text-left mb-16 lg:mb-0 items-center text-center shadow-xl hover:shadow-2xl p-10 gap-2">

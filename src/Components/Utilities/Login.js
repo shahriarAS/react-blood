@@ -35,21 +35,21 @@ function Login() {
             });
     }
 
-    useEffect(() => {
-        CheckUser()
-    }, [])
+    // useEffect(() => {
+    //     CheckUser()
+    // }, [])
 
-    function CheckUser() {
-        firebase.auth().onAuthStateChanged(function (login_user) {
-            if (login_user) {
-                const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
-                dispatch({
-                    type: "GetCurrentUser",
-                    payload: CurrentUserPayload
-                })
-            }
-        });
-    }
+    // function CheckUser() {
+    //     firebase.auth().onAuthStateChanged(function (login_user) {
+    //         if (login_user) {
+    //             const CurrentUserPayload = AllUsers[Object.keys(AllUsers).filter(user => AllUsers[user].Email == login_user.email)[0]]
+    //             dispatch({
+    //                 type: "GetCurrentUser",
+    //                 payload: CurrentUserPayload
+    //             })
+    //         }
+    //     });
+    // }
 
 
     function GoogleSignIn() {

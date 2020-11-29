@@ -1,6 +1,7 @@
 import React from 'react'
 import { Carousel } from "react-responsive-carousel";
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from 'react-router-dom';
 
 function Slider() {
     return (
@@ -14,12 +15,12 @@ function Slider() {
                                             AND INSPIRES OTHERS.
                                     </h2>
                     <div className="slider_btn mt-10 flex flex-col md:flex-row gap-3 items-start">
-                        <a href="#"
+                        <Link to="/sign_up"
                             className="donate_btn py-4 px-10 lg:px-16 rounded bg-red-600 text-xl lg:text-2xl hover:bg-red-500 text-center">Donate
-                                            Blood</a>
-                        <a href="#"
+                                            Blood</Link>
+                        <Link to="/donor_list"
                             className="donate_btn py-4 px-10 lg:px-16 rounded bg-gray-900 text-xl lg:text-2xl hover:bg-gray-800 text-center">Recieve
-                                            Blood</a>
+                                            Blood</Link>
                     </div>
                 </div>
             </div>
@@ -34,12 +35,12 @@ function Slider() {
                                         IN OTHER PERSON FACE
                                     </p>
                     <div className="slider_btn mt-10 flex flex-col md:flex-row gap-3 items-start">
-                        <a href="#"
+                        <Link to="/sign_up"
                             className="donate_btn py-4 px-10 lg:px-16 rounded bg-red-600 text-xl lg:text-2xl hover:bg-red-500 text-center">Donate
-                                            Blood</a>
-                        <a href="#"
+                                            Blood</Link>
+                        <Link to="/donor_list"
                             className="donate_btn py-4 px-10 lg:px-16 rounded bg-gray-900 text-xl lg:text-2xl hover:bg-gray-800 text-center">Recieve
-                                            Blood</a>
+                                            Blood</Link>
                     </div>
                 </div>
             </div>
