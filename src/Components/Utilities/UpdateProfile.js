@@ -16,7 +16,7 @@ function UpdateProfile() {
             mode: "onChange",
         }
     );
-    const [Donated, setDonated] = useState();
+    const [Donated, setDonated] = useState(AllUsers[CurrentUser].Donated);
 
     function UpdateFunc(data, event) {
         event.preventDefault()
