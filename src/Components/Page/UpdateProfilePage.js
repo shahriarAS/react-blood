@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Footer from '../Utilities/Footer'
 import Header from "../Utilities/Header"
 import UpdateProfile from "../Utilities/UpdateProfile"
 
@@ -12,6 +13,7 @@ function SignUpPage() {
             <div>
                 <Header />
                 <UpdateProfile />
+                <Footer />
             </div>
         )
     }

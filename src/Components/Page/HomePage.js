@@ -5,6 +5,7 @@ import Slider from '../Utilities/Slider'
 import Team from '../Utilities/Team'
 import Testimonials from '../Utilities/Testimonials'
 import Contact from '../Utilities/Contact'
+import Footer from '../Utilities/Footer'
 
 function HomePage() {
     return (
@@ -15,6 +16,7 @@ function HomePage() {
             <Testimonials />
             <Team />
             <Contact />
+            <Footer />
         </div>
     )
 }

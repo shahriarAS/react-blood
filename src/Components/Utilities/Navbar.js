@@ -109,14 +109,15 @@ function Navbar() {
                         className="fa fa-user text-2xl mr-2"></i> About Us</a>
                     <a href="#" className="navbar__item mr-5 hover:text-red-500 hover:font-bold"><i
                         className="fa fa-envelope text-2xl mr-2"></i> Contact</a>
+                    <Link to="/sign_up" className="navbar__item mr-5 hover:text-red-500 hover:font-bold"><i className="fa fa-user text-2xl mr-2"></i>Sign Up</Link>
                     {
                         (CurrentUser) ?
                             (
                                 <a onClick={(event) => LogOut(event)} href="#" className="navbar__item mr-5 hover:text-red-500 hover:font-bold"><i
-                                    className="fa fa-door-close text-2xl mr-2"></i> Logout</a>
+                                    className="fa fa-door text-2xl mr-2"></i> Logout</a>
                             ) : (
                                 <Link to="/login" className="navbar__item mr-5 hover:text-red-500 hover:font-bold"><i
-                                    className="fa fa-door-open text-2xl mr-2"></i> Login</Link>
+                                    className="fa fa-door text-2xl mr-2"></i> Login</Link>
                             )
                     }
                 </div>
@@ -130,7 +131,7 @@ function Navbar() {
                     <a href="/#About_Us" className="border-b-4 border-transparent hover:border-red-600">About Us</a>
                     <a href="#Team" className="border-b-4 border-transparent hover:border-red-600">Team</a>
                     <a href="#Contact" className="border-b-4 border-transparent hover:border-red-600">Contact</a>
-                    {/* <Link to="/sign_up" className="border-b-4 border-transparent hover:border-red-600">Sign Up</Link> */}
+                    <Link to="/sign_up" className="border-b-4 border-transparent hover:border-red-600">Sign Up</Link>
                     {
                         (AllUsers[CurrentUser]) ?
                             (

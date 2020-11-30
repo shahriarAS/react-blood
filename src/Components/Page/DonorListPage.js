@@ -10,6 +10,7 @@ import Donor_List_Row from '../Utilities/Donor_List_Row';
 import divisions from "../JsonData/Division"
 import districts from "../JsonData/Districts"
 import upazilas from "../JsonData/Upazilas"
+import Footer from '../Utilities/Footer';
 
 function Donor_List() {
     var AllUsers = useSelector(state => state.AllUser)
@@ -291,6 +292,7 @@ function Donor_List() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div >
     )
 }

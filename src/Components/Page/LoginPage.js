@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Utilities/Footer'
 import Header from '../Utilities/Header'
 import Login from '../Utilities/Login'
 
@@ -7,6 +8,7 @@ function LoginPage() {
         <div>
             <Header />
             <Login />
+            <Footer />
         </div>
     )
 }
