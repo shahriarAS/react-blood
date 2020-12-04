@@ -1,3 +1,24 @@
+# Blood Donation
+Blood Donation Website is a blood donation service or platform where you can sign up as a blood donor and also update your profile. Also you can find a blood donor from the Donor List page. It’s easy to find a donor because of the filter option based on different types.
+
+# Features:
+<ul>
+  <li>Sign Up As A Blood Donor</li>
+  <li>View Profile & Update</li>
+  <li>Find Donor On Donor List</li>
+  <li>Filter Donor On Donor List</li>
+  <li>View Donor Details</li>
+</ul>
+
+
+# Technologies:
+<ul>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Firebase</li>
+  <li>TailWindCSS</li>
+</ul>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
